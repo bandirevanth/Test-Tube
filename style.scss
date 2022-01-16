@@ -1,0 +1,143 @@
+:root {
+    --primary: #a231ff;
+    --primary-dark: #6a22d6;
+    --grey-light: #F5F6FA;
+    --grey: #645c6b;
+    --white: #ffffff;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px    100% = 16px
+  overflow-y: scroll;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--grey-light);
+}
+
+.test-tube {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-top {
+  height: .6rem;
+  width: 10rem;
+  margin-bottom: -.6rem;
+  background: var(--grey);
+  z-index: 500;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    height: .6rem;
+    width: 1.4rem;
+    background: var(--grey);
+    top: 2.4rem;
+    border-radius: 1rem;
+  }
+
+  &::before { left: -.4rem; }
+  &::after { left: 9rem; }
+
+  &__line1, &__line2 {
+    position: absolute;
+    top: 12rem;
+    left: 1.8rem;
+    height: 10rem;
+    width: .6rem;
+    background: var(--white);
+    opacity: .5;
+    border-radius: 1rem;
+  }
+  
+  &__line2 {
+    top: 10rem;
+    height: 1.5rem;
+  }
+}
+
+.top {
+  width: 14.2rem;
+  height: 3rem;
+  margin-bottom: -.7rem;
+  border-radius: 4rem;
+  border: .6rem solid var(--grey);
+  z-index: 100;
+}
+
+.liquid {
+  width: 7.8rem;
+  height: 20rem;
+  margin-bottom: -24.7rem;
+  margin-top: 4.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 300;
+
+  &__bottom {
+    height: 18rem;
+    width: inherit;
+    border-bottom-left-radius: 8rem;
+    border-bottom-right-radius: 8rem;
+    background: var(--primary);
+    background: linear-gradient(360deg, var(--primary-dark) 0%, var(--primary) 100%);
+  }
+}
+
+.tube {
+  width: 10.2rem;
+  height: 25.8rem;
+  border-bottom-left-radius: 8rem;
+  border-bottom-right-radius: 8rem;
+  border: .6rem solid var(--grey);
+  border-top: .6rem solid var(--grey-light);
+  z-index: 200;
+}
+
+@for $i from 1 through 30 {
+  // bubbles
+  .color:nth-child(#{$i}) {
+    $size: random(6) + 6 + px;
+    width: $size;
+    height: $size;
+    bottom: random(60) + 10 + px;
+    left: random(45) + 10 + px;
+    border-radius: 50%;
+    position: absolute;
+    animation: move-#{$i} 5s infinite;
+    animation-delay: -$i * .2s;
+    z-index: 400;
+  }
+  
+  @keyframes move-#{$i} {
+    100% {
+      transform: translateY((random(30) * -1rem));
+		}
+	}
+}
+
+ion-icon {
+  position: fixed;
+  font-size: 36px;
+  right: 20px;
+  bottom: 20px;
+  color: #EA4C89;
+}
